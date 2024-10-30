@@ -1,0 +1,52 @@
+from PIL import Image
+import matplotlib.pyplot as plt
+import numpy as np
+
+# #парабола
+# fig = plt.figure(figsize=(5, 5), facecolor='lightskyblue',
+#                 layout='constrained')
+# fig.suptitle('A nice Matplotlib Figure')
+# ax = fig.add_subplot()
+# x = int(input('Введите отрицательное число: '))
+# ax.plot([i for i in range(x, abs(x)+1)], [i ** 2 for i in range(x, abs(x)+1)])
+# ax.set_title('Axes', loc='left', fontstyle='oblique', fontsize='medium')
+
+# plt.show()
+
+# #столбчатая диаграмма
+# labels = ['2020', '2021', '2022', '2023', '2024']
+# math_p = [49.6, 55.1, 56.9, 55.62, 62.55]
+# inf = [58.7, 62.8, 59.5, 58.39, 54.49]
+
+# width = 0.4       #Задаём ширину столбцов
+# fig, ax = plt.subplots()
+
+# x = np.arange(len(labels))
+
+# ax.bar(x - width/2, math_p, width, label='Matematika')
+# ax.bar(x + width/2, inf, width, label='Informatika')
+# ax.set_ylabel('Соотношение, в %')
+# ax.set_title('Соотношение среднего балла ЕГЭ')
+# ax.legend(loc='lower left', title='Предметы') #Сдвигаем легенду в нижний левый угол, чтобы она не перекрывала часть графика 
+
+# plt.show()
+
+# #круговая диаграмма (бублик)
+# vals = [623, 283, 89, 105, 74, 113]
+# labels = ["rus_yaz", "mat_prof", "fizika", "biologiya", "himiya", "inform"]
+# fig, ax = plt.subplots()
+# ax.pie(vals, labels=labels, wedgeprops=dict(width=0.5))
+
+
+# plt.show()
+
+#работа с изображением
+im = Image.open("rocketship.gif")
+print(im.format, im.size, im.mode)
+box = (0, 0, 25, 25)
+region = im.crop(box)
+print(region.format, region.size, region.mode)
+region = region.transpose(Image.Transpose.ROTATE_180)
+im.paste(region, box)
+out = im.resize((256, 256))
+im.show()
